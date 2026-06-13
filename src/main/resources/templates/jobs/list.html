@@ -9,7 +9,7 @@
     <p class="muted" th:text="${#lists.size(jobs)} + ' role(s) available'"></p>
     <p th:if="${#lists.isEmpty(jobs)}" class="muted">No jobs available right now.</p>
     <div th:unless="${#lists.isEmpty(jobs)}" class="job-grid">
-      <a th:each="j : ${jobs}" class="job-card" th:href="@{|/jobs/view/${j.id}|}">
+      <a th:each="j : ${jobs}" class="job-card" th:href="@{/jobs/view/${j.id}}">
         <div class="row">
           <span class="logo" th:text="${#strings.substring(j.company.name,0,1)}"></span>
           <div>

@@ -15,8 +15,14 @@
         <td th:text="${j.company.name}"></td>
         <td th:text="${j.location}"></td>
         <td>
-          <a class="btn small" th:href="@{|/jobs/${j.id}/edit|}">Edit</a>
-          <form class="inline" method="post" th:action="@{|/jobs/${j.id}/delete|}">
+          <a class="btn small"
+             th:href="@{/jobs/{id}/edit(id=${j.id})}">
+            Edit
+          </a>
+
+          <form class="inline"
+                method="post"
+                th:action="@{/jobs/{id}/delete(id=${j.id})}">
             <button class="btn small danger" type="submit">Delete</button>
           </form>
         </td>

@@ -1,7 +1,11 @@
 package com.example.jobboard.model;
 import jakarta.persistence.*;
-import java.util.UUID;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.UUID;
+@Getter
+@Setter
 @Entity
 @Table(name = "companies")
 public class Company {
@@ -12,9 +16,4 @@ public class Company {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id", nullable = false) private User owner;
 
-    public UUID getId() { return id; }
-    public String getName() { return name; } public void setName(String v) { this.name = v; }
-    public String getDescription() { return description; } public void setDescription(String v) { this.description = v; }
-    public String getWebsite() { return website; } public void setWebsite(String v) { this.website = v; }
-    public User getOwner() { return owner; } public void setOwner(User v) { this.owner = v; }
 }

@@ -1,2 +1,4 @@
 package com.example.jobboard.exception;
-public class BusinessException extends RuntimeException { public BusinessException(String m){super(m);} }
+public class BusinessException extends RuntimeException {
+    public BusinessException(String m){super(m);}
+}

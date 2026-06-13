@@ -1,2 +1,4 @@
 package com.example.jobboard.exception;
-public class ForbiddenException extends RuntimeException { public ForbiddenException(String m){super(m);} }
+public class ForbiddenException extends RuntimeException {
+    public ForbiddenException(String m){super(m);}
+}
