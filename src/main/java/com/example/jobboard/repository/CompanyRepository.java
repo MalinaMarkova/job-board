@@ -1,0 +1,9 @@
+package com.example.jobboard.repository;
+import com.example.jobboard.model.Company;
+import com.example.jobboard.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import java.util.UUID;
+public interface CompanyRepository extends JpaRepository<Company, UUID> {
+    List<Company> findAllByOwner(User owner);
+}

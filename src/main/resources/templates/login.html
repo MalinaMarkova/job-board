@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Login — JobBoard')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main>
+<div class="card" style="max-width:420px;margin:0 auto;">
+  <h1>Login</h1>
+  <div class="alert" th:if="${error}" th:text="${error}"></div>
+  <form th:action="@{/login}" th:object="${loginDto}" method="post">
+    <div class="field">
+      <label>Username</label>
+      <input type="text" th:field="*{username}"/>
+      <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" th:field="*{password}"/>
+      <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+    </div>
+    <button class="btn" type="submit">Login</button>
+    <a class="muted" th:href="@{/register}" style="margin-left:12px;">Need an account?</a>
+  </form>
+</div>
+</main></body></html>

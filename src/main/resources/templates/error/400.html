@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Error 400')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main>
+<div class="card"><h1>Error 400</h1><p th:text="${message}"></p><a class="btn" th:href="@{/}">Home</a></div>
+</main></body></html>

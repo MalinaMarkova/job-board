@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Jobs — JobBoard')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main>
+  <div class="card">
+    <h1>Open positions</h1>
+    <p class="muted" th:text="${#lists.size(jobs)} + ' role(s) available'"></p>
+    <p th:if="${#lists.isEmpty(jobs)}" class="muted">No jobs available right now.</p>
+    <div th:unless="${#lists.isEmpty(jobs)}" class="job-grid">
+      <a th:each="j : ${jobs}" class="job-card" th:href="@{|/jobs/view/${j.id}|}">
+        <div class="row">
+          <span class="logo" th:text="${#strings.substring(j.company.name,0,1)}"></span>
+          <div>
+            <div class="title" th:text="${j.title}"></div>
+            <div class="meta">
+              <span th:text="${j.company.name}"></span>
+            </div>
+          </div>
+        </div>
+        <div class="meta">📍 <span th:text="${j.location}"></span></div>
+        <div class="salary">$<span th:text="${j.salary}"></span> / yr</div>
+      </a>
+    </div>
+  </div>
+</main>
+<footer class="footer">© JobBoard</footer>
+</body></html>

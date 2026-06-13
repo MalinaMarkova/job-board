@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Register — JobBoard')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main>
+<div class="card" style="max-width:480px;margin:0 auto;">
+  <h1>Create account</h1>
+  <div class="alert" th:if="${error}" th:text="${error}"></div>
+  <form th:action="@{/register}" th:object="${registerDto}" method="post">
+    <div class="field"><label>Username</label><input th:field="*{username}"/><span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span></div>
+    <div class="field"><label>Email</label><input th:field="*{email}"/><span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span></div>
+    <div class="field"><label>Password</label><input type="password" th:field="*{password}"/><span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span></div>
+    <div class="field"><label>Confirm password</label><input type="password" th:field="*{confirmPassword}"/><span class="error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></span></div>
+    <div class="field"><label>I am a</label>
+      <select th:field="*{role}">
+        <option value="">-- choose --</option>
+        <option value="APPLICANT">Applicant (looking for a job)</option>
+        <option value="EMPLOYER">Employer (posting jobs)</option>
+      </select>
+      <span class="error" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></span>
+    </div>
+    <button class="btn" type="submit">Register</button>
+  </form>
+</div>
+</main></body></html>

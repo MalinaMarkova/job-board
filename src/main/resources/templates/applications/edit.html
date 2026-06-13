@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Edit application — JobBoard')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main>
+<div class="card" style="max-width:600px;margin:0 auto;">
+  <h1>Edit application</h1>
+  <form th:object="${applicationDto}" method="post" th:action="@{|/applications/${editId}|}">
+    <div class="field"><label>Cover letter</label><textarea th:field="*{coverLetter}" rows="8"></textarea><span class="error" th:if="${#fields.hasErrors('coverLetter')}" th:errors="*{coverLetter}"></span></div>
+    <button class="btn" type="submit">Save</button>
+    <a class="btn secondary" th:href="@{/applications/mine}">Cancel</a>
+  </form>
+</div>
+</main></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Applicants — JobBoard')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main>
+<div class="card">
+  <h1>Applications received</h1>
+  <table>
+    <thead><tr><th>Job</th><th>Applicant</th><th>Cover letter</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      <tr th:each="a : ${applications}">
+        <td th:text="${a.jobPost.title}"></td>
+        <td th:text="${a.applicant.username}"></td>
+        <td><pre style="white-space:pre-wrap;margin:0;font-family:inherit;" th:text="${a.coverLetter}"></pre></td>
+        <td><span th:class="'badge ' + ${a.status}" th:text="${a.status}"></span></td>
+        <td>
+          <form th:if="${a.status.name() == 'PENDING'}" class="inline" method="post" th:action="@{|/applications/${a.id}/decide|}">
+            <input type="hidden" name="status" value="ACCEPTED"/>
+            <button class="btn small" type="submit">Accept</button>
+          </form>
+          <form th:if="${a.status.name() == 'PENDING'}" class="inline" method="post" th:action="@{|/applications/${a.id}/decide|}">
+            <input type="hidden" name="status" value="REJECTED"/>
+            <button class="btn small danger" type="submit">Reject</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</main></body></html>

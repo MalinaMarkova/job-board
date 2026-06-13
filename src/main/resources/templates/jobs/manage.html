@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('My jobs — JobBoard')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main>
+<div class="card">
+  <h1>My job postings</h1>
+  <p><a class="btn" th:href="@{/jobs/new}">+ New posting</a></p>
+  <table>
+    <thead><tr><th>Title</th><th>Company</th><th>Location</th><th></th></tr></thead>
+    <tbody>
+      <tr th:each="j : ${jobs}">
+        <td th:text="${j.title}"></td>
+        <td th:text="${j.company.name}"></td>
+        <td th:text="${j.location}"></td>
+        <td>
+          <a class="btn small" th:href="@{|/jobs/${j.id}/edit|}">Edit</a>
+          <form class="inline" method="post" th:action="@{|/jobs/${j.id}/delete|}">
+            <button class="btn small danger" type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</main></body></html>

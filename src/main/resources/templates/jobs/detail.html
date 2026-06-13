@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Job — JobBoard')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main>
+  <div class="card">
+    <div class="row" style="margin-bottom:14px;">
+      <span class="logo" style="width:56px;height:56px;font-size:1.3rem;" th:text="${#strings.substring(job.company.name,0,1)}"></span>
+      <div>
+        <h1 style="margin:0;" th:text="${job.title}"></h1>
+        <p class="muted" style="margin:4px 0 0;">
+          <span th:text="${job.company.name}"></span> · 📍 <span th:text="${job.location}"></span>
+        </p>
+      </div>
+    </div>
+    <div style="margin-bottom:14px;">
+      <span class="tag">💰 $<span th:text="${job.salary}"></span> / year</span>
+      <span class="tag">🏢 Full-time</span>
+    </div>
+    <hr/>
+    <h3>About the role</h3>
+    <p style="white-space:pre-wrap; line-height:1.6;" th:text="${job.description}"></p>
+    <hr/>
+    <h3>About <span th:text="${job.company.name}"></span></h3>
+    <p class="muted" th:text="${job.company.description}"></p>
+    <a th:href="${job.company.website}" target="_blank">Visit company website →</a>
+    <div style="margin-top:22px; display:flex; gap:10px;">
+      <a th:if="${user != null and user.role.name() == 'APPLICANT'}"
+         class="btn" th:href="@{|/applications/apply/${job.id}|}">Apply now</a>
+      <a th:if="${user == null}" class="btn" th:href="@{/login}">Login to apply</a>
+      <a class="btn secondary" th:href="@{/jobs}">← Back to jobs</a>
+    </div>
+  </div>
+</main>
+<footer class="footer">© JobBoard</footer>
+</body></html>

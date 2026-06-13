@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('My applications — JobBoard')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main>
+<div class="card">
+  <h1>My applications</h1>
+  <table>
+    <thead><tr><th>Job</th><th>Company</th><th>Status</th><th>Submitted</th><th></th></tr></thead>
+    <tbody>
+      <tr th:each="a : ${applications}">
+        <td><a th:href="@{|/jobs/view/${a.jobPost.id}|}" th:text="${a.jobPost.title}"></a></td>
+        <td th:text="${a.jobPost.company.name}"></td>
+        <td><span th:class="'badge ' + ${a.status}" th:text="${a.status}"></span></td>
+        <td th:text="${#temporals.format(a.submittedOn, 'yyyy-MM-dd HH:mm')}"></td>
+        <td>
+          <a th:if="${a.status.name() == 'PENDING'}" class="btn small" th:href="@{|/applications/${a.id}/edit|}">Edit</a>
+          <form class="inline" method="post" th:action="@{|/applications/${a.id}/withdraw|}">
+            <button class="btn small danger" type="submit">Withdraw</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</main></body></html>

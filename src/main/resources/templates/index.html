@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('JobBoard — Find your next role')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main>
+  <section class="hero">
+    <span class="tag">New roles posted daily</span>
+    <h1 class="grad">Land the role.<br/>Build what's next.</h1>
+    <p>Curated openings from fast-moving companies. Apply in one click, or post your team's next great hire.</p>
+    <div class="cta">
+      <a class="btn" th:href="@{/jobs}">Browse jobs →</a>
+      <a class="btn secondary" th:href="@{/register}">Create account</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Why JobBoard?</h2>
+    <div class="features">
+      <div class="feature">
+        <div class="ico">⚡</div>
+        <h3>Fast apply</h3><p>Send your application in seconds with a clean cover letter form.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🛡️</div>
+        <h3>Verified employers</h3><p>Every company is owned by a registered employer account.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🎯</div>
+        <h3>Quality over noise</h3><p>Focused listings — real titles, real salaries, no spam.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="row" style="justify-content:space-between;margin-bottom:14px;">
+      <h2 style="margin:0;">Latest postings</h2>
+      <a class="btn ghost" th:href="@{/jobs}">View all →</a>
+    </div>
+    <p th:if="${#lists.isEmpty(latest)}" class="muted">No jobs posted yet.</p>
+    <div th:unless="${#lists.isEmpty(latest)}" class="job-grid">
+      <a th:each="j : ${latest}" class="job-card" th:href="@{|/jobs/view/${j.id}|}">
+        <div class="row">
+          <span class="logo" th:text="${#strings.substring(j.company.name,0,1)}"></span>
+          <div>
+            <div class="title" th:text="${j.title}"></div>
+            <div class="meta">
+              <span th:text="${j.company.name}"></span> ·
+              <span th:text="${j.location}"></span>
+            </div>
+          </div>
+        </div>
+        <div class="salary">$<span th:text="${j.salary}"></span></div>
+      </a>
+    </div>
+  </section>
+</main>
+<footer class="footer">© JobBoard — Spring Boot demo project</footer>
+</body></html>

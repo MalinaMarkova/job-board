@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:fragment="head(title)">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title th:text="${title}">Job Board</title>
+  <link rel="stylesheet" th:href="@{/css/app.css}"/>
+</head>
+<body>
+<nav th:fragment="nav" class="nav">
+  <a th:href="@{/}" class="brand">JobBoard</a>
+  <div class="links">
+    <a th:href="@{/jobs}">Jobs</a>
+    <a th:href="@{/about}">About</a>
+    <th:block th:with="u=${session.SESSION_USER}">
+      <th:block th:if="${u == null}">
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/register}">Register</a>
+      </th:block>
+      <th:block th:if="${u != null}">
+        <a th:if="${u.role.name() == 'EMPLOYER'}" th:href="@{/companies}">My Companies</a>
+        <a th:if="${u.role.name() == 'EMPLOYER'}" th:href="@{/jobs/manage}">My Jobs</a>
+        <a th:if="${u.role.name() == 'EMPLOYER'}" th:href="@{/applications/received}">Applicants</a>
+        <a th:if="${u.role.name() == 'APPLICANT'}" th:href="@{/applications/mine}">My Applications</a>
+        <span class="user" th:text="'Hi, ' + ${u.username}"></span>
+        <a th:href="@{/logout}">Logout</a>
+      </th:block>
+    </th:block>
+  </div>
+</nav>
+</body>
+</html>

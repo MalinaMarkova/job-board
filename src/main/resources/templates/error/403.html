@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Error 403')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main>
+<div class="card"><h1>Error 403</h1><p th:text="${message}"></p><a class="btn" th:href="@{/}">Home</a></div>
+</main></body></html>
