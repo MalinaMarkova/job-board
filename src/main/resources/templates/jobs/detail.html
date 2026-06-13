@@ -27,7 +27,7 @@
     <a th:href="${job.company.website}" target="_blank">Visit company website →</a>
     <div style="margin-top:22px; display:flex; gap:10px;">
       <a th:if="${user != null and user.role.name() == 'APPLICANT'}"
-         class="btn" th:href="@{/applications/apply/${job.id}}">Apply now</a>
+         class="btn" th:href="@{/applications/apply/{id}(id=${job.id})}">Apply now</a>
       <a th:if="${user == null}" class="btn" th:href="@{/login}">Login to apply</a>
       <a class="btn secondary" th:href="@{/jobs}">← Back to jobs</a>
     </div>
