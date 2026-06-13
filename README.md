@@ -17,5 +17,5 @@ Tech Stack
 - Java, Spring Boot
 - Thymeleaf
 - Spring Data JPA
-- MySQL / H2
+- MySQL
 
