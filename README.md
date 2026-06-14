@@ -5,8 +5,8 @@ JobBoard is a Spring Boot application for managing job postings and applications
 
 Features
 - Users can browse job listings
-- Applicants can apply for jobs
-- Employers can create and manage job posts
+- Applicants can apply for more than one job
+- Employers can create and manage job posts and create companies
 
 Domain Model
 - Company: owns job postings
