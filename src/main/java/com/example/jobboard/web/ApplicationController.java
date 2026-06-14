@@ -1,7 +1,8 @@
 package com.example.jobboard.web;
 import com.example.jobboard.dto.ApplicationDto;
 import com.example.jobboard.exception.ForbiddenException;
-import com.example.jobboard.model.*;
+import com.example.jobboard.model.Role;
+import com.example.jobboard.model.ApplicationStatus;
 import com.example.jobboard.service.ApplicationService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
