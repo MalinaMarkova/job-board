@@ -14,9 +14,17 @@
         <td th:text="${c.name}"></td>
         <td><a th:href="${c.website}" target="_blank" th:text="${c.website}"></a></td>
         <td>
-          <a class="btn small" th:href="@{|/companies/${c.id}/edit|}">Edit</a>
-          <form class="inline" method="post" th:action="@{|/companies/${c.id}/delete|}">
-            <button class="btn small danger" type="submit">Delete</button>
+          <a class="btn small"
+             th:href="@{/companies/{id}/edit(id=${c.id})}">
+            Edit
+          </a>
+
+          <form class="inline"
+                method="post"
+                th:action="@{/companies/{id}/delete(id=${c.id})}">
+            <button class="btn small danger" type="submit">
+              Delete
+            </button>
           </form>
         </td>
       </tr>
