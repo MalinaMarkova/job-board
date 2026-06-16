@@ -6,7 +6,9 @@
 <main>
 <div class="card" style="max-width:600px;margin:0 auto;">
   <h1>Apply to job</h1>
-  <form th:object="${applicationDto}" method="post" th:action="@{|/applications/apply/${jobId}|}">
+  <form th:object="${applicationDto}"
+        method="post"
+        th:action="@{/applications/apply/{jobId}(jobId=${jobId})}">
     <div class="field"><label>Cover letter</label><textarea th:field="*{coverLetter}" rows="8"></textarea><span class="error" th:if="${#fields.hasErrors('coverLetter')}" th:errors="*{coverLetter}"></span></div>
     <button class="btn" type="submit">Submit application</button>
   </form>
