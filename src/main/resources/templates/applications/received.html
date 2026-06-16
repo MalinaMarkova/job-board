@@ -15,11 +15,11 @@
         <td><pre style="white-space:pre-wrap;margin:0;font-family:inherit;" th:text="${a.coverLetter}"></pre></td>
         <td><span th:class="'badge ' + ${a.status}" th:text="${a.status}"></span></td>
         <td>
-          <form th:if="${a.status.name() == 'PENDING'}" class="inline" method="post" th:action="@{|/applications/${a.id}/decide|}">
+          <form th:if="${a.status.name() == 'PENDING'}" class="inline" method="post" th:action="@{/applications/{id}/decide(id=${a.id})}">
             <input type="hidden" name="status" value="ACCEPTED"/>
             <button class="btn small" type="submit">Accept</button>
           </form>
-          <form th:if="${a.status.name() == 'PENDING'}" class="inline" method="post" th:action="@{|/applications/${a.id}/decide|}">
+          <form th:if="${a.status.name() == 'PENDING'}" class="inline" method="post" th:action="@{/applications/{id}/decide(id=${a.id})}">
             <input type="hidden" name="status" value="REJECTED"/>
             <button class="btn small danger" type="submit">Reject</button>
           </form>
