@@ -9,18 +9,39 @@
   <table>
     <thead><tr><th>Job</th><th>Company</th><th>Status</th><th>Submitted</th><th></th></tr></thead>
     <tbody>
-      <tr th:each="a : ${applications}">
-        <td><a th:href="@{|/jobs/view/${a.jobPost.id}|}" th:text="${a.jobPost.title}"></a></td>
-        <td th:text="${a.jobPost.company.name}"></td>
-        <td><span th:class="'badge ' + ${a.status}" th:text="${a.status}"></span></td>
-        <td th:text="${#temporals.format(a.submittedOn, 'yyyy-MM-dd HH:mm')}"></td>
-        <td>
-          <a th:if="${a.status.name() == 'PENDING'}" class="btn small" th:href="@{|/applications/${a.id}/edit|}">Edit</a>
-          <form class="inline" method="post" th:action="@{|/applications/${a.id}/withdraw|}">
-            <button class="btn small danger" type="submit">Withdraw</button>
-          </form>
-        </td>
-      </tr>
+    <tr th:each="a : ${applications}">
+      <td>
+        <a th:href="@{/jobs/view/{id}(id=${a.jobPost.id})}"
+           th:text="${a.jobPost.title}">
+        </a>
+      </td>
+
+      <td th:text="${a.jobPost.company.name}"></td>
+
+      <td>
+      <span th:class="'badge ' + ${a.status}"
+            th:text="${a.status}">
+      </span>
+      </td>
+
+      <td th:text="${#temporals.format(a.submittedOn, 'yyyy-MM-dd HH:mm')}"></td>
+
+      <td>
+        <a th:if="${a.status.name() == 'PENDING'}"
+           class="btn small"
+           th:href="@{/applications/{id}/edit(id=${a.id})}">
+          Edit
+        </a>
+
+        <form class="inline"
+              method="post"
+              th:action="@{/applications/{id}/withdraw(id=${a.id})}">
+          <button class="btn small danger" type="submit">
+            Withdraw
+          </button>
+        </form>
+      </td>
+    </tr>
     </tbody>
   </table>
 </div>
